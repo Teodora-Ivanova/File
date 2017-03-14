@@ -1,0 +1,47 @@
+// input information in a file
+
+public static void writeDownInputtedInformationInAFile(String scanner) {
+		FileWriter writeDownInAFile;
+		try {
+			writeDownInAFile = new FileWriter("UserInformation.txt", true);
+			writeDownInAFile.write(scanner);
+			writeDownInAFile.write("\r\n");
+			writeDownInAFile.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+// finds out how many lines there are in the file
+	
+  public static int countsTheLinesInTheFile() throws IOException {
+		BufferedReader line = new BufferedReader(new FileReader("UserInformation.txt"));
+		String singleLineOfTheFile;
+		int numberOfTheLinesInTheFile = 0;
+		try {
+			while ((singleLineOfTheFile = line.readLine()) != null) {
+				numberOfTheLinesInTheFile++;
+			}
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		line.close();
+		return numberOfTheLinesInTheFile;
+	}
+
+// read information from the file and puts it in an array
+	
+  public static String[] readArray(int numberOfTheLinesInTheFile) throws FileNotFoundException {
+		BufferedReader line = new BufferedReader(new FileReader("UserInformation.txt"));
+		String[] readTheDataFromTheFile = new String[numberOfTheLinesInTheFile];
+		try {
+			for (int i = 0; i < numberOfTheLinesInTheFile; i++) {
+				readTheDataFromTheFile[i] = line.readLine();
+			}
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		return readTheDataFromTheFile;
+	}
